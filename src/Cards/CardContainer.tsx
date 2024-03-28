@@ -5,6 +5,8 @@ const CardContainer = () => {
     const [movingList, setMovingList] = useState(false);
     const [appearFirst, setAppearFirst] = useState(true);
 
+    const [loading, setLoading] = useState(true);
+
     const [imageList, setImageList] = useState([
         "HeroPic1.jpg",
         "HeroPic2.jpg",
@@ -36,8 +38,24 @@ const CardContainer = () => {
         return () => clearInterval(interval);
     }, []);
 
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false);
+        }, 500);
+    }, []);
+
     return (
-        <div className="card-container">
+        <div className="relative">
+            <div
+                className={`fixed top-0 left-0 w-screen h-screen bg-white  ${
+                    loading
+                        ? "opacity-100 z-[999]"
+                        : "opacity-0 invisible z-[-1]"
+                } transition-all duration-1000 flex justify-center items-center`}
+            >
+                <h1 className="">Welcome to the future of design</h1>
+            </div>
+
             {imageList.map((image, idx) => (
                 <div
                     key={idx}
