@@ -1,0 +1,17 @@
+.logos-slide {
+    animation: 15s MoveUp infinite linear;
+}
+
+.logos-slide p {
+    margin: 17px;
+    /* animation: 10s fadeText infinite linear; */
+}
+
+@keyframes MoveUp {
+    from {
+        transform: translateY(0%);
+    }
+    to {
+        transform: translateY(-100%);
+    }
+}
