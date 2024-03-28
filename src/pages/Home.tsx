@@ -28,7 +28,7 @@ const Home: React.FC<{}> = () => {
                 }}
             >
                 <motion.p
-                    className="w-full absolute text-white text-4xl font-bold whitespace-nowrap top-32 flex items-center justify-center "
+                    className="w-full absolute text-white text-4xl font-bold whitespace-nowrap top-10 lg:top-32 flex items-center justify-center "
                     animate={{ y: ["0%", "50%", "0%"] }}
                     transition={{
                         duration: 2,

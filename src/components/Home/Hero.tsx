@@ -3,18 +3,18 @@ import "./HeroStyle.css";
 
 const Hero = () => {
     return (
-        <div className="h-[40rem] w-full px-96 bg-white flex justify-between items-start">
-            <div className="relative w-[30rem] h-full transition">
+        <div className="lg:h-[40rem] h-[580px] w-full lg:bg-white flex justify-around items-start flex-wrap relative overflow-y-hidden">
+            <div className="relative w-full lg:w-[30rem] h-full transition">
                 {/* <img
                     className="w-full h-auto border-2 border-neutral-900 hover:scale-105 transition"
                     src="HeroPic1.jpg"
                 /> */}
                 <CardContainer />
             </div>
-            <div className="h-full logo-container flex overflow-y-hidden ">
-                <div className="logos w-max relative text-6xl items-center h-full m-0 ">
+            <div className="h-full logo-container flex justify-center lg:justify-normal w-full lg:w-max overflow-y-hidden absolute lg:static left-0 top-0 text-3xl lg:text-6xl text-white lg:text-black">
+                <div className="logos lg:w-max relative lg:h-full m-0 overflow-y-hidden ">
                     <div className="logos-slide text-right">
-                        <p>Define</p>
+                        <p>Define </p>
                         <p>Encapsulate</p>
                         <p>Jetset</p>
                         <p>You are</p>
@@ -33,10 +33,10 @@ const Hero = () => {
                         <p>Design</p>
                         <p>Get with</p>
                     </div>
-                    <div className="absolute top-0 right-0 w-full h-32 bg-gradient-to-t from-transparent to-white"></div>
-                    <div className="absolute bottom-0 right-0 w-full h-32 bg-gradient-to-b from-transparent to-white"></div>
+                    <div className="absolute hidden lg:block top-0 right-0 w-full h-32 bg-gradient-to-t from-transparent to-white"></div>
+                    <div className="absolute hidden lg:block bottom-0 right-0 w-full h-32 bg-gradient-to-b from-transparent to-white"></div>
                 </div>
-                <span className="my-auto text-6xl ml-2">style</span>
+                <span className="my-auto ml-2 font-bold">style</span>
             </div>
             {/* <img className="w-1/4 h-auto" src="HeroPic2.jpg" /> */}
         </div>

@@ -2,9 +2,9 @@ import React from "react";
 
 const Footer: React.FC<{}> = () => {
     return (
-        <div className="h-52 w-full bg-white flex items-center justify-center">
-            This is the footer
-        </div>
+        <footer className="min-h-32 lg:min-h-52 w-full bg-white flex items-center justify-center">
+            Made by Ariel Cohen
+        </footer>
     );
 };
 

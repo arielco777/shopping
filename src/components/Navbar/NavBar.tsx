@@ -1,14 +1,21 @@
 import { Link } from "react-router-dom";
 import NavItems from "./NavItems";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, MenuIcon, XIcon } from "lucide-react";
 import { menuList } from "./MenuList";
+import { useEffect, useState } from "react";
 
 const NavBar: React.FC<{}> = () => {
+    const [showMenu, setShowMenu] = useState(false);
+
+    useEffect(() => {
+        document.body.style.overflow = showMenu ? "hidden" : "visible";
+    }, [showMenu]);
+
     return (
-        <nav className="fixed z-[999] w-full border-b py-10 text-white bg-black">
-            <ul className="flex w-full h-full justify-center">
+        <nav className="fixed z-50 lg:w-full lg:border-b lg:py-10 top-0 left-0 text-white lg:bg-black">
+            <ul className="hidden lg:flex w-full h-full justify-center">
                 <Link to="/">
-                    <p className="absolute text-4xl top-3 left-12 px-2 py-1 rounded hover:bg-neutral-200 transition   hover:underline-offset-2">
+                    <p className="absolute text-4xl left-12 top-1/2 -translate-y-1/2 rounded hover:bg-neutral-700 transition   hover:underline-offset-2">
                         Logo
                     </p>
                 </Link>
@@ -92,6 +99,22 @@ const NavBar: React.FC<{}> = () => {
                     </li>
                 ))}
             </ul>
+            <div className="lg:hidden h-max flex bg-black p-1 rounded-br-3xl">
+                <button onClick={() => setShowMenu(true)}>
+                    <MenuIcon className="text-white" size={40} />
+                </button>
+                <div
+                    className={`${
+                        showMenu ? "w-screen h-screen" : "w-0 h-0"
+                    } transition-all fixed top-0 left-0 z-[200] bg-black overflow-hidden `}
+                >
+                    <div className="w-full h-full">
+                        <button onClick={() => setShowMenu(false)}>
+                            <XIcon size={40} />
+                        </button>
+                    </div>
+                </div>
+            </div>
         </nav>
     );
 };
