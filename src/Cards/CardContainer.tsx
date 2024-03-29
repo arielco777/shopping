@@ -10,15 +10,25 @@ const CardContainer = () => {
         "HeroPic1.jpg",
         "HeroPic2.jpg",
         "HeroPic3.jpg",
+        "HeroPic4.jpg",
     ]);
 
+    let interval;
+
+    //Animation interval
     useEffect(() => {
-        const interval = setInterval(() => {
+        animationInterval();
+        return () => clearInterval(interval);
+    }, []);
+
+    const animationInterval = () => {
+        interval = setInterval(() => {
             setMovingLast(true);
 
             setTimeout(() => {
                 setMovingList(true);
             }, 200);
+
             setTimeout(() => {
                 setAppearFirst(false);
                 setImageList((prevList) => {
@@ -31,13 +41,11 @@ const CardContainer = () => {
                 setMovingLast((prev) => !prev);
                 setTimeout(() => setAppearFirst((prev) => !prev), 10);
             }, 700);
-        }, 4000); // Interval for shifting images
-
-        return () => clearInterval(interval);
-    }, []);
+        }, 4000);
+    };
 
     return (
-        <div className="relative w-full h-full overflow-y-hidden">
+        <div className="relative w-full h-full">
             {imageList.map((image, idx: number) => (
                 <div
                     key={idx}
@@ -54,7 +62,7 @@ const CardContainer = () => {
                         movingLast &&
                         idx == imageList.length - 1 &&
                         "translate-y-12 opacity-0 transition-all duration-500"
-                    } absolute flex justify-center`}
+                    } absolute flex justify-center h-full lg:h-max`}
                     style={{
                         left: window.innerWidth > 1024 ? `${idx}rem` : 0,
                         top: window.innerWidth > 1024 ? `${idx}rem` : 0,
@@ -63,7 +71,7 @@ const CardContainer = () => {
                     <img
                         src={image}
                         alt={`Image ${idx}`}
-                        className="w-[25rem] h-auto max-h-[580px] "
+                        className="w-[25rem] h-auto max-h-[600px] lg:rounded-lg lg:m-2"
                     />
                 </div>
             ))}

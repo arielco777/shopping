@@ -1,24 +1,41 @@
+:root {
+    --marginMobile: 40px;
+    --marginDesktop: 30px;
+    --animationTime: 15s;
+}
+
 .logos-slide {
-    animation: 15s MoveUp infinite linear;
+    animation: var(--animationTime) MoveUpDesktop infinite linear;
 }
 
 .logos-slide p {
-    margin: 17px;
+    margin: var(--marginDesktop);
     user-select: none;
-    /* animation: 10s fadeText infinite linear; */
 }
 
 @media (max-width: 1023px) {
+    .logos-slide {
+        animation: var(--animationTime) MoveUpMobile infinite linear;
+    }
     .logos-slide p {
-        margin: 40px 0;
+        margin: var(--marginMobile) 0 0 0;
     }
 }
 
-@keyframes MoveUp {
+@keyframes MoveUpDesktop {
     from {
-        transform: translateY(0%);
+        transform: translateY(0);
     }
     to {
-        transform: translateY(-100%);
+        transform: translateY(calc(-100% - var(--marginDesktop)));
+    }
+}
+
+@keyframes MoveUpMobile {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(calc(-100% - var(--marginMobile)));
     }
 }

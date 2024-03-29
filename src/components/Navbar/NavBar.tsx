@@ -28,7 +28,7 @@ const NavBar: React.FC<{}> = () => {
         <nav className="fixed z-50 lg:w-full lg:border-b lg:py-10 top-0 left-0 text-white lg:bg-black">
             <ul className="hidden lg:flex w-full h-full justify-center">
                 <Link to="/">
-                    <p className="absolute text-4xl left-12 top-1/2 -translate-y-1/2 rounded hover:bg-neutral-700 transition   hover:underline-offset-2">
+                    <p className="absolute text-4xl left-8 top-1/3 -translate-y-1/2 rounded hover:bg-neutral-700 transition   hover:underline-offset-2">
                         Logo
                     </p>
                 </Link>
@@ -49,71 +49,88 @@ const NavBar: React.FC<{}> = () => {
                                 <div className="border-b w-0 group-hover/main:w-full transition-all border-neutral-700"></div>
                             </span>
                         </Link>
-                        <div
-                            className={`absolute top-24 text-black flex left-0 invisible ${
+                        <section
+                            className={`absolute w-screen top-176 text-black left-0 invisible ${
                                 item.children && "group-hover/main:visible"
-                            } bg-white border-y border-b-neutral-700 w-full justify-center divide-x`}
+                            } bg-white border-y border-b-neutral-700 w-full`}
                         >
-                            {item.children && (
-                                <div className="py-2 px-5 w-1/2 flex flex-col items-end justify-right">
-                                    <div className="w-40 ">
-                                        <p className="font-bold mb-2">New</p>
-
-                                        <ul className="select-none w-1/5 text-left">
-                                            {item.children.new.map(
-                                                (child, i) => (
-                                                    <NavItems
-                                                        className="w-max "
-                                                        key={`${idx}-${i}`}
-                                                        path={`${item.path}${child.path}`}
-                                                        itemName={child.name}
-                                                    />
-                                                )
-                                            )}
-                                        </ul>
+                            <h1 className="border-b w-full text-center text-2xl uppercase tracking-widest">
+                                {item.name}
+                            </h1>
+                            <div className="flex divide-x">
+                                {item.children && (
+                                    <div className="py-2 w-full flex justify-end">
+                                        <div className="w-40 ">
+                                            <p className="font-bold mb-2">
+                                                New
+                                            </p>
+                                            <ul className="select-none w-1/5 text-left">
+                                                {item.children.new.map(
+                                                    (child, i) => (
+                                                        <NavItems
+                                                            className="w-max "
+                                                            key={`${idx}-${i}`}
+                                                            path={`${item.path}${child.path}`}
+                                                            itemName={
+                                                                child.name
+                                                            }
+                                                        />
+                                                    )
+                                                )}
+                                            </ul>
+                                        </div>
                                     </div>
-                                </div>
-                            )}
-                            {item.children !== null && (
-                                <div className="flex gap-20 px-5 py-2 w-full">
-                                    <div>
-                                        <p className="font-bold mb-2">
-                                            Catalog
-                                        </p>
-                                        <ul className="select-none">
-                                            {item.children.casual.map(
-                                                (child, i) => (
-                                                    <NavItems
-                                                        key={`${idx}-${i}`}
-                                                        path={`${item.path}${child.path}`}
-                                                        itemName={child.name}
-                                                    />
-                                                )
-                                            )}
-                                        </ul>
+                                )}
+                                {item.children !== null && (
+                                    <div className="flex gap-20 px-5 py-2 w-full">
+                                        <div>
+                                            <p className="font-bold mb-2">
+                                                Catalog
+                                            </p>
+                                            <ul className="select-none">
+                                                {item.children.casual.map(
+                                                    (child, i) => (
+                                                        <NavItems
+                                                            key={`${idx}-${i}`}
+                                                            path={`${item.path}${child.path}`}
+                                                            itemName={
+                                                                child.name
+                                                            }
+                                                        />
+                                                    )
+                                                )}
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <p className="font-bold mb-2">
+                                                Sports
+                                            </p>
+                                            <ul className="select-none">
+                                                {item.children.sports?.map(
+                                                    (child, i) => (
+                                                        <NavItems
+                                                            key={`${idx}-${i}`}
+                                                            path={`${item.path}${child.path}`}
+                                                            itemName={
+                                                                child.name
+                                                            }
+                                                        />
+                                                    )
+                                                )}
+                                            </ul>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <p className="font-bold mb-2">Sports</p>
-                                        <ul className="select-none">
-                                            {item.children.sports?.map(
-                                                (child, i) => (
-                                                    <NavItems
-                                                        key={`${idx}-${i}`}
-                                                        path={`${item.path}${child.path}`}
-                                                        itemName={child.name}
-                                                    />
-                                                )
-                                            )}
-                                        </ul>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
+                                )}
+                            </div>
+                        </section>
                     </li>
                 ))}
             </ul>
-            <div className="lg:hidden h-max flex bg-black p-1 rounded-br-3xl">
-                <button onClick={() => setShowMenu(true)}>
+            <div className="lg:hidden h-max flex">
+                <button
+                    onClick={() => setShowMenu(true)}
+                    className="bg-black rounded-br-3xl p-1 pr-2 pb-2"
+                >
                     <MenuIcon className="text-white" size={40} />
                 </button>
                 <div
@@ -137,6 +154,7 @@ const NavBar: React.FC<{}> = () => {
                                         onClick={() => {
                                             if (item.children)
                                                 setSubMenu(item.path);
+                                            else handleNavigate(item.path);
                                         }}
                                     >
                                         {item.name}

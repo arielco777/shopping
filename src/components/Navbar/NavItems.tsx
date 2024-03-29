@@ -7,7 +7,7 @@ const NavItems: React.FC<{
 }> = ({ itemName, path, className }) => {
     return (
         <Link to={path}>
-            <li className={`group/item cursor-pointer ${className}`}>
+            <li className={`group/item cursor-pointer w-max ${className}`}>
                 <span>{itemName}</span>
                 <div className="border-b border-neutral-600 w-0 group-hover/item:w-full transition-all"></div>
             </li>

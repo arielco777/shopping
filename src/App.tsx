@@ -108,22 +108,30 @@ const App: React.FC<{}> = () => {
     useEffect(() => {
         setTimeout(() => {
             setLoading(false);
-        }, 500);
+        }, 1000);
     }, []);
 
     return (
-        <div className="h-screen bg-black flex flex-col justify-between">
+        <div className="h-screen flex flex-col justify-between">
             <div
-                className={`fixed top-0 left-0 w-screen h-screen bg-white  ${
+                className={`fixed top-0 left-0 w-screen h-screen bg-white ${
                     loading
                         ? "opacity-100 z-[100]"
                         : "opacity-0 invisible z-[-1]"
                 } transition-all duration-1000 flex justify-center items-center`}
             >
-                <h1 className="">Welcome to the future of design</h1>
+                <h1
+                    className={`border border-neutral-700 ${
+                        loading
+                            ? "lg:py-20 lg:px-20 py-[20vh] px-[10vw]"
+                            : "px-[50vw] py-[50vh]"
+                    } transition-all whitespace-nowrap duration-1000`}
+                >
+                    Welcome to the future of design
+                </h1>
             </div>
             <NavBar />
-            <div className="lg:py-0 py-16 bg-black flex-grow">
+            <div className="lg:py-0 py-16 flex-grow">
                 <Routes>
                     <Route path="/" element={<Home />} />
                 </Routes>
