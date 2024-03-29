@@ -131,7 +131,7 @@ const App: React.FC<{}> = () => {
                 </h1>
             </div>
             <NavBar />
-            <div className="lg:py-0 py-16 flex-grow">
+            <div className="lg:py-0 pb-16 flex-grow">
                 <Routes>
                     <Route path="/" element={<Home />} />
                 </Routes>

@@ -35,7 +35,7 @@ const Home: React.FC<{}> = () => {
                     height: 100,
                     opacity,
                 }}
-                className="lg:mt-16 mt-5 mb-32 lg:mb-60"
+                className="lg:mt-16 mt-10 mb-32 lg:mb-60"
             >
                 <motion.p
                     className="w-full absolute text-white text-4xl font-bold whitespace-nowrap top-10 lg:top-40 flex items-center justify-center "
