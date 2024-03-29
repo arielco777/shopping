@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import NavItems from "./NavItems";
 import { ChevronDown, MenuIcon, XIcon } from "lucide-react";
 import { menuList } from "./MenuList";
@@ -6,10 +6,23 @@ import { useEffect, useState } from "react";
 
 const NavBar: React.FC<{}> = () => {
     const [showMenu, setShowMenu] = useState(false);
+    const [subMenu, setSubMenu] = useState("");
+    const [subMenuTwo, setSubMenuTwo] = useState("");
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         document.body.style.overflow = showMenu ? "hidden" : "visible";
     }, [showMenu]);
+
+    const handleNavigate = (path) => {
+        setShowMenu(false);
+        setTimeout(() => {
+            setSubMenuTwo("");
+            setSubMenu("");
+        }, 300);
+        navigate(path);
+    };
 
     return (
         <nav className="fixed z-50 lg:w-full lg:border-b lg:py-10 top-0 left-0 text-white lg:bg-black">
@@ -112,6 +125,140 @@ const NavBar: React.FC<{}> = () => {
                         <button onClick={() => setShowMenu(false)}>
                             <XIcon size={40} />
                         </button>
+                        <div className="flex flex-col items-start">
+                            <button onClick={() => handleNavigate("/")}>
+                                <p className="text-4xl mb-2">Logo</p>
+                            </button>
+                            {menuList.map((item, idx: number) => (
+                                <>
+                                    <button
+                                        className="hover:bg-gray-700"
+                                        key={idx}
+                                        onClick={() => {
+                                            if (item.children)
+                                                setSubMenu(item.path);
+                                        }}
+                                    >
+                                        {item.name}
+                                    </button>
+                                    {subMenu == item.path && (
+                                        <div className="bg-black fixed top-0 left-0 w-screen h-screen flex flex-col items-start">
+                                            <button
+                                                className="hover:bg-gray-700"
+                                                onClick={() => setSubMenu("")}
+                                            >
+                                                Close
+                                            </button>
+                                            <button
+                                                className="hover:bg-gray-700"
+                                                onClick={() =>
+                                                    setSubMenuTwo("new")
+                                                }
+                                            >
+                                                New
+                                            </button>
+                                            <button
+                                                className="hover:bg-gray-700"
+                                                onClick={() =>
+                                                    setSubMenuTwo("sports")
+                                                }
+                                            >
+                                                Sport
+                                            </button>
+                                            <button
+                                                className="hover:bg-gray-700"
+                                                onClick={() =>
+                                                    setSubMenuTwo("casual")
+                                                }
+                                            >
+                                                Casual
+                                            </button>
+                                            {subMenuTwo == "new" && (
+                                                <div className="bg-black fixed h-screen w-screen top-0 left-0 z-50 flex flex-col items-start">
+                                                    <button
+                                                        className="hover:bg-gray-700"
+                                                        onClick={() =>
+                                                            setSubMenuTwo("")
+                                                        }
+                                                    >
+                                                        Close
+                                                    </button>
+                                                    {item.children.new.map(
+                                                        (child, i) => (
+                                                            <button
+                                                                onClick={() => {
+                                                                    handleNavigate(
+                                                                        `${item.path}${child.path}`
+                                                                    );
+                                                                }}
+                                                                className="hover:bg-gray-700"
+                                                                key={i}
+                                                            >
+                                                                {child.name}
+                                                            </button>
+                                                        )
+                                                    )}
+                                                </div>
+                                            )}
+                                            {subMenuTwo == "sports" && (
+                                                <div className="bg-black fixed h-screen w-screen top-0 left-0 z-50 flex flex-col items-start">
+                                                    <button
+                                                        className="hover:bg-gray-700"
+                                                        onClick={() =>
+                                                            setSubMenuTwo("")
+                                                        }
+                                                    >
+                                                        Close
+                                                    </button>
+                                                    {item.children.sports.map(
+                                                        (child, i) => (
+                                                            <button
+                                                                onClick={() => {
+                                                                    handleNavigate(
+                                                                        `${item.path}${child.path}`
+                                                                    );
+                                                                }}
+                                                                className="hover:bg-gray-700"
+                                                                key={i}
+                                                            >
+                                                                {child.name}
+                                                            </button>
+                                                        )
+                                                    )}
+                                                </div>
+                                            )}
+                                            {subMenuTwo == "casual" && (
+                                                <div className="bg-black fixed h-screen w-screen top-0 left-0 z-50 flex flex-col items-start">
+                                                    <button
+                                                        className="hover:bg-gray-700"
+                                                        onClick={() =>
+                                                            setSubMenuTwo("")
+                                                        }
+                                                    >
+                                                        Close
+                                                    </button>
+                                                    {item.children.casual.map(
+                                                        (child, i) => (
+                                                            <button
+                                                                onClick={() => {
+                                                                    handleNavigate(
+                                                                        `${item.path}${child.path}`
+                                                                    );
+                                                                }}
+                                                                className="hover:bg-gray-700"
+                                                                key={i}
+                                                            >
+                                                                {child.name}
+                                                            </button>
+                                                        )
+                                                    )}
+                                                </div>
+                                            )}
+                                        </div>
+                                    )}
+                                </>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>

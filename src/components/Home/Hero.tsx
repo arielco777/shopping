@@ -5,10 +5,6 @@ const Hero = () => {
     return (
         <div className="lg:h-[40rem] h-[580px] w-full lg:bg-white flex justify-around items-start flex-wrap relative overflow-y-hidden">
             <div className="relative w-full lg:w-[30rem] h-full transition">
-                {/* <img
-                    className="w-full h-auto border-2 border-neutral-900 hover:scale-105 transition"
-                    src="HeroPic1.jpg"
-                /> */}
                 <CardContainer />
             </div>
             <div className="h-full logo-container flex justify-center lg:justify-normal w-full lg:w-max overflow-y-hidden absolute lg:static left-0 top-0 text-3xl lg:text-6xl text-white lg:text-black">
