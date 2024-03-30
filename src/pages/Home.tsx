@@ -1,44 +1,58 @@
 import { ArrowDown } from "lucide-react";
-import Hero from "../components/Home/Hero";
+import Hero from "../components/Home/Hero/Hero";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { articles } from "../components/Home/articlesList";
-import HomeItems from "../components/Home/Items";
+import NewItems from "../components/Home/NewItems/NewItems";
 
 const Home: React.FC<{}> = () => {
-    const ref = useRef<HTMLDivElement>(null);
+    const mainRef = useRef<HTMLDivElement>(null);
+    const otherRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
-        target: ref,
+        target: mainRef,
         offset: ["end end", "end start"],
     });
 
     const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.3, 0]);
-    const translateX = useTransform(
+    const translateXDesktop = useTransform(
         scrollYProgress,
-        [0.3, 0.5],
+        [0, 0.5],
+        ["-100%", "50%"]
+    );
+    const translateXMobile = useTransform(
+        scrollYProgress,
+        [0, 0.3],
         ["-100%", "50%"]
     );
 
+    const translateXDesktopPop = useTransform(
+        scrollYProgress,
+        [0.3, 0.8],
+        ["-100%", "50%"]
+    );
+    const translateXMobilePop = useTransform(
+        scrollYProgress,
+        [0.3, 0.8],
+        ["-100%", "50%"]
+    );
     const popCatDiv =
         "rounded-lg relative h-72 lg:h-[30rem] w-[calc(50%-2.5rem)] lg:w-1/5 flex flex-col justify-end hover:scale-105 transition cursor-pointer";
 
     const popCatImg = "w-full h-full object-cover rounded-lg";
 
     return (
-        <div className="h-full w-full bg-black overflow-hidden">
+        <div className="relative h-full w-full bg-black overflow-hidden">
             <Hero />
             <motion.div
-                ref={ref}
+                ref={mainRef}
                 style={{
-                    position: "relative",
                     width: "100%",
                     height: 200,
                     opacity,
                 }}
-                className="lg:mt-16 mb-32 lg:mb-60"
+                className="lg:relative lg:mt-16 lg:mb-52"
             >
                 <motion.p
-                    className="w-full absolute text-white text-4xl font-bold whitespace-nowrap top-10 lg:top-40 flex items-center justify-center "
+                    className="w-full absolute text-white text-4xl font-bold whitespace-nowrap top-[70vh] lg:top-40 flex items-center justify-center "
                     animate={{ y: ["0%", "50%", "0%"] }}
                     transition={{
                         duration: 2,
@@ -48,31 +62,39 @@ const Home: React.FC<{}> = () => {
                     initial={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                 >
-                    <ArrowDown className="text-white" size={40} />
+                    <ArrowDown className="text-white bg-black" size={40} />
                 </motion.p>
             </motion.div>
 
-            <section className="relative lg:w-[calc(100%-20rem)] mx-auto pt-10">
+            <section className="relative lg:w-[calc(100%-20rem)] mx-auto">
                 <motion.h3
-                    className="absolute w-full -top-10 -left-1/2 bg-red-10 text-center text-2xl uppercase tracking-widest"
+                    className="absolute w-full -top-14 -left-1/2 bg-red-10 text-center text-2xl uppercase tracking-widest"
                     style={{
                         color: "white",
-                        translateX,
+                        translateX:
+                            window.innerWidth < 1024
+                                ? translateXMobile
+                                : translateXDesktop,
                     }}
                 >
                     New Items
                 </motion.h3>
-                <div className="flex gap-10 items-center overflow-auto h-full py-2 px-14">
-                    {articles.map((item, idx: number) => (
-                        <HomeItems key={idx} item={item} />
-                    ))}
-                    <div className="absolute left-0 w-16 h-full bg-gradient-to-l from-transparent to-black"></div>
-                    <div className="absolute right-0 w-16 h-full bg-gradient-to-r from-transparent to-black"></div>
-                </div>
+                <NewItems />
             </section>
 
-            <section className="mt-20 pb-20">
-                <h3>Popular categories</h3>
+            <section className="relative mt-32 pb-20" ref={otherRef}>
+                <motion.h3
+                    className="absolute w-full -top-14 -left-1/2 bg-red-10 text-center text-2xl uppercase tracking-widest"
+                    style={{
+                        color: "white",
+                        translateX:
+                            window.innerWidth < 1024
+                                ? translateXMobilePop
+                                : translateXDesktopPop,
+                    }}
+                >
+                    Popular categories
+                </motion.h3>
                 <div className="flex flex-wrap gap-5 lg:gap-10 items-center justify-center pb-10">
                     <div className={popCatDiv}>
                         <img

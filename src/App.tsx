@@ -19,8 +19,12 @@ import { useEffect, useState } from "react";
 
 const App: React.FC<{}> = () => {
     const [loading, setLoading] = useState(true);
+    const [progressMove, setProgressMove] = useState(false);
 
     useEffect(() => {
+        setTimeout(() => {
+            setProgressMove(true);
+        }, 10);
         setTimeout(() => {
             setLoading(false);
         }, 1000);
@@ -36,13 +40,20 @@ const App: React.FC<{}> = () => {
                 } transition-all duration-1000 flex justify-center items-center`}
             >
                 <h1
-                    className={`border border-neutral-700 ${
+                    className={`border border-neutral-400 ${
                         loading
                             ? "lg:py-20 lg:px-20 py-[20vh] px-[10vw]"
                             : "px-[50vw] py-[50vh]"
-                    } transition-all whitespace-nowrap duration-1000`}
+                    } transition-all whitespace-nowrap duration-1000 text-neutral-600`}
                 >
                     Welcome to the future of design
+                    <div className="w-[99%] h-3 -skew-x-[15deg] relative border border-neutral-500 overflow-hidden">
+                        <div
+                            className={`bg-neutral-400 -ml-1 h-4 skew-x-[15deg] ${
+                                progressMove ? "w-[105%]" : "w-3"
+                            } transition-all duration-1000 ease-in-out`}
+                        ></div>
+                    </div>
                 </h1>
             </div>
             <NavBar />

@@ -157,7 +157,7 @@ const NavBar: React.FC<{}> = () => {
                                             else handleNavigate(item.path);
                                         }}
                                     >
-                                        r{item.name}
+                                        {item.name}
                                     </button>
                                     {subMenu == item.path && (
                                         <div className="bg-black fixed top-0 left-0 w-screen h-screen flex flex-col items-start">
