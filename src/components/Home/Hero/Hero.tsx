@@ -8,8 +8,8 @@ const Hero = () => {
                 <CardContainer />
             </div>
             <div className="h-full w-full logo-container flex justify-center lg:justify-normal lg:w-max absolute lg:static lg:translate-x-0 lg:left-0 top-0 text-3xl lg:text-6xl text-white lg:text-black">
-                <div className="w-full lg:flex shadow-lg">
-                    <div className="logos w-max relative lg:h-full mt-16 lg:m-0 overflow-y-hidden flex lg:flex-col">
+                <div className="w-full lg:flex">
+                    <div className="logos w-max relative lg:h-full mt-16 lg:m-0 overflow-y-hidden flex lg:block">
                         <div className="logos-slide text-right w-full lg:w-max flex lg:flex-col">
                             <p>Define </p>
                             <p>Encapsulate</p>
@@ -34,7 +34,7 @@ const Hero = () => {
                         <div className="absolute hidden lg:block top-0 right-0 w-full h-32 bg-gradient-to-t from-transparent to-white"></div>
                         <div className="absolute hidden lg:block bottom-0 right-0 w-full h-32 bg-gradient-to-b from-transparent to-white"></div>
                     </div>
-                    <span className="text-start bg-red-100 lg:static my-auto ml-2 bg-black lg:bg-white pl-2 pr-1 tracking-widest font-bold">
+                    <span className="text-start lg:static my-auto ml-2 bg-black lg:bg-white pl-2 pr-1 tracking-widest font-bold">
                         style
                     </span>
                 </div>

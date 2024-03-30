@@ -9,7 +9,7 @@ interface ItemType {
 
 const NewItems = () => {
     return (
-        <div className="flex gap-10 items-center overflow-auto h-full py-2 px-14">
+        <div className="flex gap-10 items-center overflow-auto h-full py-5 px-14">
             {articles.map((item: ItemType, idx: number) => (
                 <div
                     key={idx}

@@ -16,24 +16,27 @@ const Home: React.FC<{}> = () => {
     const translateXDesktop = useTransform(
         scrollYProgress,
         [0, 0.5],
-        ["-100%", "50%"]
+        ["-100%", "0%"]
     );
     const translateXMobile = useTransform(
         scrollYProgress,
-        [0, 0.3],
-        ["-100%", "50%"]
+        [0, 0.5],
+        ["-100%", "0%"]
     );
 
     const translateXDesktopPop = useTransform(
         scrollYProgress,
         [0.3, 0.8],
-        ["-100%", "50%"]
+        ["-100%", "0%"]
     );
     const translateXMobilePop = useTransform(
         scrollYProgress,
         [0.3, 0.8],
-        ["-100%", "50%"]
+        ["-100%", "0%"]
     );
+
+    const top = useTransform(scrollYProgress, [0, 0.7], ["50vh", "1.5rem"]);
+
     const popCatDiv =
         "rounded-lg relative h-72 lg:h-[30rem] w-[calc(50%-2.5rem)] lg:w-1/5 flex flex-col justify-end hover:scale-105 transition cursor-pointer";
 
@@ -49,7 +52,7 @@ const Home: React.FC<{}> = () => {
                     height: 200,
                     opacity,
                 }}
-                className="lg:relative lg:mt-16 lg:mb-52"
+                className="lg:relative lg:mt-16 lg:mb-32"
             >
                 <motion.p
                     className="w-full absolute text-white text-4xl font-bold whitespace-nowrap top-[70vh] lg:top-40 flex items-center justify-center "
@@ -65,10 +68,19 @@ const Home: React.FC<{}> = () => {
                     <ArrowDown className="text-white bg-black" size={40} />
                 </motion.p>
             </motion.div>
+            <motion.p
+                style={{
+                    top,
+                    zIndex: 1000,
+                }}
+                className="hidden bg-black fixed right lg:block text-white text-center float-right pr-50 text-5xl right-40"
+            >
+                Bring it with you
+            </motion.p>
 
             <section className="relative lg:w-[calc(100%-20rem)] mx-auto">
                 <motion.h3
-                    className="absolute w-full -top-14 -left-1/2 bg-red-10 text-center text-2xl uppercase tracking-widest"
+                    className="w-full text-center text-2xl uppercase tracking-widest"
                     style={{
                         color: "white",
                         translateX:
@@ -84,7 +96,7 @@ const Home: React.FC<{}> = () => {
 
             <section className="relative mt-32 pb-20" ref={otherRef}>
                 <motion.h3
-                    className="absolute w-full -top-14 -left-1/2 bg-red-10 text-center text-2xl uppercase tracking-widest"
+                    className="w-full bg-red-10 text-center text-2xl uppercase tracking-widest"
                     style={{
                         color: "white",
                         translateX:
@@ -95,7 +107,7 @@ const Home: React.FC<{}> = () => {
                 >
                     Popular categories
                 </motion.h3>
-                <div className="flex flex-wrap gap-5 lg:gap-10 items-center justify-center pb-10">
+                <div className="flex flex-wrap gap-5 lg:gap-10 items-center justify-center py-10">
                     <div className={popCatDiv}>
                         <img
                             src="homeItems/NewArrival.jpg"

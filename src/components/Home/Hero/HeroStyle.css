@@ -1,7 +1,7 @@
 :root {
-    --marginMobile: 20px;
+    --marginMobile: 40px;
     --marginDesktop: 30px;
-    --animationTime: 15s;
+    --animationTime: 10s;
 }
 
 .logos-slide {
@@ -35,7 +35,7 @@
         transform: translateY(0);
     }
     to {
-        transform: translateY(calc(-100% - var(--marginDesktop)));
+        transform: translateY(-100%);
     }
 }
 
