@@ -40,38 +40,38 @@ const CardContainer = () => {
                 setMovingList((prev) => !prev);
                 setMovingLast((prev) => !prev);
                 setTimeout(() => setAppearFirst((prev) => !prev), 10);
-            }, 700);
-        }, 4000);
+            }, 1000);
+        }, 5000);
     };
 
     return (
-        <div className="relative w-full h-full">
+        <div className="relative h-ful w-full lg:w-full">
             {imageList.map((image, idx: number) => (
                 <div
                     key={idx}
-                    className={`cards w-full ${
+                    className={`cards w-full lg:w-max ${
                         idx == 0 &&
                         (appearFirst
-                            ? "lg:opacity-100 transition-all duration-500"
+                            ? "lg:opacity-100 transition-all duration-1000"
                             : "lg:opacity-0")
                     } ${
                         movingList &&
                         idx !== imageList.length - 1 &&
-                        "lg:translate-x-4 lg:translate-y-4 transition-all duration-500"
+                        "lg:translate-x-4 lg:translate-y-4 transition-all duration-1000"
                     } ${
                         movingLast &&
                         idx == imageList.length - 1 &&
-                        "translate-y-12 opacity-0 transition-all duration-500"
-                    } absolute flex justify-center h-full lg:h-max`}
+                        "translate-y-12 opacity-0 transition-all duration-1000"
+                    } absolute flex justify-center h-full lg:h-max lg:shadow-[0_35px_30px_15px_rgba(0,0,0,0.3)]`}
                     style={{
-                        left: window.innerWidth > 1024 ? `${idx}rem` : 0,
+                        left: window.innerWidth > 1024 ? `${idx}rem` : "0",
                         top: window.innerWidth > 1024 ? `${idx}rem` : 0,
                     }}
                 >
                     <img
                         src={image}
                         alt={`Image ${idx}`}
-                        className="w-[25rem] h-auto max-h-[600px] lg:rounded-lg lg:m-2"
+                        className="min-w-[25rem] max-w-[25rem] lg:w-[25rem] h-auto lg:h-[600px] lg:rounded-lg "
                     />
                 </div>
             ))}

@@ -32,10 +32,10 @@ const Home: React.FC<{}> = () => {
                 style={{
                     position: "relative",
                     width: "100%",
-                    height: 100,
+                    height: 200,
                     opacity,
                 }}
-                className="lg:mt-16 mt-10 mb-32 lg:mb-60"
+                className="lg:mt-16 mb-32 lg:mb-60"
             >
                 <motion.p
                     className="w-full absolute text-white text-4xl font-bold whitespace-nowrap top-10 lg:top-40 flex items-center justify-center "
