@@ -1,4 +1,4 @@
-import { ChevronRight, XIcon } from "lucide-react";
+import { XIcon } from "lucide-react";
 
 const SubMenu = ({ item, close, handleNavigate }) => {
     return (

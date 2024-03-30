@@ -1,10 +1,16 @@
 // import { Link } from "react-router-dom";
 
+import { useEffect } from "react";
+
 const NavItems: React.FC<{
     itemName: string;
     path?: string;
     className?: string;
 }> = ({ itemName, path = "", className }) => {
+    useEffect(() => {
+        console.log("Path", path);
+    }, []);
+
     return (
         // <Link to={path}>
         <li className={`group/item cursor-pointer w-max ${className}`}>
