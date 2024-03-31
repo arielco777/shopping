@@ -1,4 +1,4 @@
-import { ChevronRight, XIcon } from "lucide-react";
+import { ChevronLeft, ChevronRight, XIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { menuList } from "../MenuList";
 import SubMenu from "./SubMenu";
@@ -24,10 +24,7 @@ const MobileNav: React.FC<{}> = () => {
 
     const handleNavigate = (path: string) => {
         setShowMenu(false);
-        setTimeout(() => {
-            setSubMenuTwo("");
-            setSubMenu("");
-        }, 300);
+        // setTimeout(() => {}, 500);
         console.log("Path: ", path);
         // navigate(path);
     };
@@ -51,14 +48,14 @@ const MobileNav: React.FC<{}> = () => {
             >
                 <div className="w-full h-full">
                     <div className="flex items-center justify-between px-1 py-2">
+                        <button onClick={() => setShowMenu(false)}>
+                            <p className="text-4xl mb-1 mr-2">Logo</p>
+                        </button>
                         <button
                             className="hover:bg-neutral-700"
-                            onClick={() => setShowMenu(false)}
+                            onClick={() => handleNavigate("/")}
                         >
                             <XIcon size={"40px"} />
-                        </button>
-                        <button onClick={() => handleNavigate("/")}>
-                            <p className="text-4xl mb-1 mr-2">Logo</p>
                         </button>
                     </div>
                     <div className="flex flex-col items-start">
@@ -80,25 +77,33 @@ const MobileNav: React.FC<{}> = () => {
                                         )}
                                     </button>
                                     {subMenu == item.path && (
-                                        <div className="fixed w-full top-0 h-screen z-10 bg-neutral-900 overflow-y-auto">
+                                        <div
+                                            className={`fixed top-0 ${
+                                                showMenu
+                                                    ? "w-screen h-screen"
+                                                    : "w-0 h-0"
+                                            } z-10 bg-neutral-900 overflow-hidden transition-all`}
+                                        >
                                             <div className="flex items-center justify-between px-1 py-2">
+                                                <button
+                                                    onClick={() =>
+                                                        setSubMenu("")
+                                                    }
+                                                >
+                                                    <p className="text-4xl mb-1 mr-2">
+                                                        <ChevronLeft
+                                                            size={40}
+                                                        />
+                                                    </p>
+                                                </button>
                                                 <button
                                                     className="hover:bg-gray-700"
                                                     onClick={() => {
-                                                        setSubMenu("");
+                                                        handleNavigate("/");
                                                         console.log("Here");
                                                     }}
                                                 >
                                                     <XIcon size={"40px"} />
-                                                </button>
-                                                <button
-                                                    onClick={() =>
-                                                        handleNavigate("/")
-                                                    }
-                                                >
-                                                    <p className="text-4xl mb-1 mr-2">
-                                                        Logo
-                                                    </p>
                                                 </button>
                                             </div>
                                             <div className="h-1/2 flex flex-col justify-between ">
@@ -144,6 +149,7 @@ const MobileNav: React.FC<{}> = () => {
                                                         }
                                                         item={item.children.new}
                                                         close={setSubMenuTwo}
+                                                        showMenu={showMenu}
                                                     />
                                                 )}
                                                 {subMenuTwo == "sports" && (
@@ -155,6 +161,7 @@ const MobileNav: React.FC<{}> = () => {
                                                             item.children.sports
                                                         }
                                                         close={setSubMenuTwo}
+                                                        showMenu={showMenu}
                                                     />
                                                 )}
                                                 {subMenuTwo == "casual" && (
@@ -166,6 +173,7 @@ const MobileNav: React.FC<{}> = () => {
                                                             item.children.casual
                                                         }
                                                         close={setSubMenuTwo}
+                                                        showMenu={showMenu}
                                                     />
                                                 )}
                                             </div>
@@ -176,7 +184,7 @@ const MobileNav: React.FC<{}> = () => {
                         </div>
                     </div>
                 </div>
-                <div className="fixed bottom-4 left-4 z-[999]">
+                <div className={`absolute bottom-4 left-4 z-[999] `}>
                     <p className="text-md">Ariel Cohen</p>
                 </div>
             </div>

@@ -1,20 +1,23 @@
-import { XIcon } from "lucide-react";
+import { ChevronLeft, XIcon } from "lucide-react";
 
-const SubMenu = ({ item, close, handleNavigate }) => {
+const SubMenu = ({ item, close, handleNavigate, showMenu }) => {
     return (
-        <div className="fixed w-full top-0 h-screen z-10 bg-neutral-900 overflow-y-auto">
+        <div
+            className={`fixed top-0 ${
+                showMenu ? "w-screen h-screen" : "w-0 h-0"
+            } z-10 bg-neutral-900 overflow-hidden transition-all`}
+        >
             <div className="flex items-center justify-between px-1 py-2">
+                <button onClick={() => close("")}>
+                    <ChevronLeft size={40} />
+                </button>
                 <button
                     className="hover:bg-gray-700"
                     onClick={() => {
-                        close("");
-                        console.log("Here");
+                        handleNavigate("/");
                     }}
                 >
                     <XIcon size={"40px"} />
-                </button>
-                <button onClick={() => handleNavigate("/")}>
-                    <p className="text-4xl mb-1 mr-2">Logo</p>
                 </button>
             </div>
             <div className="h-1/2 flex flex-col justify-between">
