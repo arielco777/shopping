@@ -35,7 +35,7 @@ const Home: React.FC<{}> = () => {
         ["-100%", "0%"]
     );
 
-    const top = useTransform(scrollYProgress, [0, 0.7], ["50vh", "1.5rem"]);
+    // const top = useTransform(scrollYProgress, [0, 0.5], ["33vh", "1.5rem"]);
 
     const popCatDiv =
         "rounded-lg relative h-72 lg:h-[30rem] w-[calc(50%-2.5rem)] lg:w-1/5 flex flex-col justify-end hover:scale-105 transition cursor-pointer";
@@ -68,15 +68,15 @@ const Home: React.FC<{}> = () => {
                     <ArrowDown className="text-white bg-black" size={40} />
                 </motion.p>
             </motion.div>
-            <motion.p
+            {/* <motion.p
                 style={{
                     top,
                     zIndex: 1000,
                 }}
-                className="hidden bg-black fixed right lg:block text-white text-center float-right pr-50 text-5xl right-40"
+                className="hidden bg-black fixed lg:block text-white text-center float-right pr-50 text-5xl right-32"
             >
                 Bring it with you
-            </motion.p>
+            </motion.p> */}
 
             <section className="relative lg:w-[calc(100%-20rem)] mx-auto">
                 <motion.h3

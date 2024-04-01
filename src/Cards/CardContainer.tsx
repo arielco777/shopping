@@ -13,16 +13,9 @@ const CardContainer = () => {
         "HeroPic4.jpg",
     ]);
 
-    let interval;
-
     //Animation interval
     useEffect(() => {
-        animationInterval();
-        return () => clearInterval(interval);
-    }, []);
-
-    const animationInterval = () => {
-        interval = setInterval(() => {
+        const interval = setInterval(() => {
             setMovingLast(true);
 
             setTimeout(() => {
@@ -42,7 +35,8 @@ const CardContainer = () => {
                 setTimeout(() => setAppearFirst((prev) => !prev), 10);
             }, 1000);
         }, 5000);
-    };
+        return () => clearInterval(interval);
+    }, []);
 
     return (
         <div className="relative h-ful w-full lg:w-full">

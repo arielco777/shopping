@@ -33,7 +33,7 @@ const App: React.FC<{}> = () => {
     return (
         <div className="h-screen flex flex-col justify-between">
             <div
-                className={`fixed top-0 left-0 w-screen h-screen bg-white ${
+                className={`fixed z-[9990] top-0 left-0 w-screen h-screen bg-white ${
                     loading
                         ? "opacity-100 z-[100]"
                         : "opacity-0 invisible z-[-1]"
