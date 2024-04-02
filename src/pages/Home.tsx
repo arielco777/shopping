@@ -55,7 +55,7 @@ const Home: React.FC<{}> = () => {
                 className="lg:relative lg:mt-16 lg:mb-32"
             >
                 <motion.p
-                    className="w-full absolute text-white text-4xl font-bold whitespace-nowrap top-[70vh] lg:top-40 flex items-center justify-center "
+                    className="w-full absolute text-white text-4xl font-bold whitespace-nowrap top-[70vh] lg:top-0 flex items-center justify-center "
                     animate={{ y: ["0%", "50%", "0%"] }}
                     transition={{
                         duration: 2,
